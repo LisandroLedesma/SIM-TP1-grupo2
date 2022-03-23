@@ -1,4 +1,4 @@
-const button = document.getElementById('btnSim');
+const button = document.getElementById('btnSimMultiplicativo');
 
 
 const borrarTabla = () => {
@@ -14,7 +14,7 @@ const borrarTabla = () => {
     }
 }
 
-const simular = () => {
+const simularMultiplicativo = () => {
 
     const eGridDiv = document.querySelector('#myGrid');
 
@@ -33,20 +33,21 @@ const simular = () => {
 
 
     // Definir filas
-    let rowData = [];
+    //let rowData = [];
+    let rowData = generar_aleatorio_multiplicativo(13, 6, 8, 10000);
     for (let i = 0; i < 10000; i++) {
         // Cada row se va a instaciar con objetos que retornan de las simulaciones a mostrar en pantalla, esto es un placeholder para la demo
 
 
         let row = {
-            "n": i,
-            "Semilla": i,
-            "Número": i,
+            "n": rowData.n,
+            "Semilla": rowData.semilla,
+            "Número": rowData.Número,
         }
         rowData.push(row)
     }
 
-    // let rowData = lineal();
+    //let rowData = generar_aleatorio_multiplicativo();
 
     // Matchea colunas y filas
     let gridOptions = {

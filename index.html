@@ -45,7 +45,7 @@
     <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseLineal" role="button" aria-expanded="false" aria-controls="collapseExample">
           Lineal / Mixto
         </a>
-    <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseMixto" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseMultiplicativo" role="button" aria-expanded="false" aria-controls="collapseExample">
             Multiplicativo
         </a>
     <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseDefault" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -63,13 +63,13 @@
             <div id="myGrid" class="ag-theme-alpine" style="height: 500px;"></div>
         </div>
     </div>
-    <div class="collapse" id="collapseMixto">
+    <div class="collapse" id="collapseMultiplicativo">
         <div class="container-fluid">
             <hr>
             <h4>*acá todos los inputs*</h4>
             <hr>
 
-            <button type="button" class="btn btn-success" id="btnSim" onclick="simular()">Simular</button>
+            <button type="button" class="btn btn-success" id="btnSimMultiplicativo" onclick="simularMultiplicativo()">Simular</button>
             <button type="button" class="btn btn-danger" onclick="borrarTabla()">Reiniciar</button>
             <hr>
             <div id="myGrid" class="ag-theme-alpine" style="height: 500px;"></div>
@@ -87,12 +87,11 @@
         </div>
     </div>
 
-
+    <script src="multiplicativo.js"></script>
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    
 
 </body>
 
