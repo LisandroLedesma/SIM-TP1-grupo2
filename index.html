@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIM - TP1</title>
 
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="./Generadores/lineal.js"></script>
 
     <!-- CDN libreria tablas -->
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
@@ -54,11 +56,17 @@
     <div class="collapse" id="collapseLineal">
         <div class="container-fluid">
             <hr>
-            <h4>*acá todos los inputs*</h4>
+            <input id="mcl-seed" placeholder="Semilla" style="margin: 0.5em;" type="number"/>
+            <input id="mcl-c" placeholder="c" style="margin: 0.5em;" type="number"/>
+            <input id="mcl-a" placeholder="a" style="margin: 0.5em;" type="number"/>
+            <input id="mcl-m" placeholder="m" style="margin: 0.5em;" type="number"/>
+            <input id="mcl-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number"/>
+                <!-- <input id="mcl-from" placeholder="desde" style="margin: 0.5em;" type="number"/>
+                <input id="mcl-to" placeholder="hasta" style="margin: 0.5em;" type="number"/> -->
             <hr>
 
-            <button type="button" class="btn btn-success" id="btnSim" onclick="simular()">Simular</button>
-            <button type="button" class="btn btn-danger" onclick="borrarTabla()">Reiniciar</button>
+            <button type="button" class="btn btn-success" id="btnSimMCL">Simular</button>
+            <button type="button" class="btn btn-danger" id="btnSimMCLDelete">Reiniciar</button>
             <hr>
             <div id="myGrid" class="ag-theme-alpine" style="height: 500px;"></div>
         </div>
@@ -92,7 +100,6 @@
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 
 </body>
 
