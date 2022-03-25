@@ -8,17 +8,23 @@ function generar_aleatorio_multiplicativo(a, semilla, m, cant_random){
     let random = [];
     for (let i = 0; i < cant_random; i++) {
         semilla = generar_semillas(a, semilla, m);
-        //console.log(semilla)
-        let rnd = semilla / (m-1);
-        let rnd_redondeado = rnd.toFixed(4)
-        //console.log(rnd_redondeado);
+        let rnd = semilla / m;
+        let rnd_redondeado = rnd.toFixed(4);
         
-        const valor_random = new ValorRandom(i, semilla, rnd_redondeado);
-        random.push(valor_random);
+        const valor_random = new ValorRandom(i + 1, semilla, rnd_redondeado);
         prox_semilla = semilla;
+
+        let row = {
+            "n": valor_random.n, 
+            "Semilla": valor_random.semilla,
+            "Número": valor_random.nro_random,
+        }
+
+        random.push(row);
 
     }
     console.log(random);
+
     return random
 }
 
@@ -27,7 +33,7 @@ const button = document.getElementById('btnSimMultiplicativo');
 
 const borrarTabla = () => {
 
-    const eGridDiv = document.querySelector('#myGrid');
+    const eGridDiv = document.querySelector('#myGridMult');
 
     button.disabled = false;
 
@@ -40,7 +46,7 @@ const borrarTabla = () => {
 
 const simularMultiplicativo = () => {
 
-    const eGridDiv = document.querySelector('#myGrid');
+    const eGridDiv = document.querySelector('#myGridMult');
 
     button.disabled = true;
 
@@ -54,26 +60,30 @@ const simularMultiplicativo = () => {
 
 
     // Validar inputs
+    let a = document.getElementById('mm-a').value;
+    let m = document.getElementById('mm-m').value;
+    let n = document.getElementById('mm-n').value;
+    let semilla = document.getElementById('mm-semilla').value;
 
-
-    // Definir filas
-    let rowData = [];
-    let rowData1 = generar_aleatorio_multiplicativo(19, 17, 32, 8);
-    console.log(rowData1.nro_random)
-    //console.log(rowData.nro_random)
-    for (let i = 0; i < 8; i++) {
-        // Cada row se va a instaciar con objetos que retornan de las simulaciones a mostrar en pantalla, esto es un placeholder para la demo
-
-
-        let row = {
-            "n": i,
-            "Semilla": i,
-            "Número": i,
-        }
-        rowData.push(row)
+    //validacion para campos vacios
+    if (a === '' || m === '' || n === '' || semilla === '') {
+        alert('Por favor, llene todos los campos');
+        button.disabled = false;
     }
 
-    //let rowData = generar_aleatorio_multiplicativo();
+    //validacion para campos negativos
+    if (a < 0 || m < 0 || n < 0 || semilla < 0) {
+        alert('Los valores deben ser positivos');
+        button.disabled = false;
+    }
+
+    //validacion para semilla impar y primo
+    //if (semilla % 2 == 0){
+    //    alert('La semilla debe ser un numero impar y primo')
+    //}
+
+    // Definir filas
+    let rowData = generar_aleatorio_multiplicativo(a, semilla, m, n);
 
     // Matchea colunas y filas
     let gridOptions = {
