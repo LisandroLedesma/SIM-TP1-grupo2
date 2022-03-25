@@ -1,14 +1,14 @@
 //metodo multiplicativo
 function generar_semillas(a, semilla, m){
-    prox_semilla = (a * semilla) % m;
-    return semilla
+    let prox_semilla = (a * semilla) % m;
+    return prox_semilla
 }
 
 function generar_aleatorio_multiplicativo(a, semilla, m, cant_random){
     let random = [];
     for (let i = 0; i < cant_random; i++) {
         semilla = generar_semillas(a, semilla, m);
-        rnd = semilla / m;
+        let rnd = semilla / m;
         
         const valor_random = new ValorRandom(i, semilla, rnd)
         random.push(valor_random)
