@@ -45,7 +45,7 @@
     <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseLineal" role="button" aria-expanded="false" aria-controls="collapseExample">
           Lineal / Mixto
         </a>
-    <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseMixto" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseMutiplicativo" role="button" aria-expanded="false" aria-controls="collapseExample">
             Multiplicativo
         </a>
     <a class="mx-2 btn btn-primary" data-bs-toggle="collapse" href="#collapseDefault" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -54,7 +54,12 @@
     <div class="collapse" id="collapseLineal">
         <div class="container-fluid">
             <hr>
-            <h4>*acá todos los inputs*</h4>
+            <input id="mcl-seed" placeholder="Semilla" style="margin: 0.5em;" type="number" />
+            <input id="mcl-c" placeholder="c" style="margin: 0.5em;" type="number" />
+            <input id="mcl-a" placeholder="a" style="margin: 0.5em;" type="number" />
+            <input id="mcl-m" placeholder="m" style="margin: 0.5em;" type="number" />
+            <input id="mcl-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number" />
+
             <select id="intLineal" class="form-select" aria-label="Default select example">
                 <option selected>Intervalos</option>
                 <option value="5">5</option>
@@ -64,15 +69,15 @@
             </select>
             <hr>
 
-            <button type="button" class="btn btn-success" id="btnSim" onclick="simular()">Simular</button>
-            <button type="button" class="btn btn-danger" onclick="borrarTabla()">Reiniciar</button>
-            <button type="button" class="btn btn-info" id="btnTest" onclick="test()"> Test </button>
+            <button type="button" class="btn btn-success" id="btnSimMCL" onclick="simularMCL()">Simular</button>
+            <button type="button" class="btn btn-danger" onclick="borrarTabla()" id="btnSimMCLDelete">Reiniciar</button>
+            <button type="button" class="btn btn-info" id="btnTestLineal" onclick="test()"> Test </button>
             <hr>
-            <div id="myGrid" class="ag-theme-alpine my-2" style="height: 500px; width: 1250px;"></div>
+            <div id="gridLineal" class="ag-theme-alpine my-2" style="height: 500px; width: 1250px;"></div>
             <div id="gridTestLineal" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
         </div>
     </div>
-    <div class="collapse" id="collapseMixto">
+    <div class="collapse" id="collapseMutiplicativo">
         <div class="container-fluid">
             <hr>
             <h4>*acá todos los inputs*</h4>
@@ -102,8 +107,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <script src="./main.js"></script>
+
     <script src="./test_chi.js"></script>
+
+    <script src="./Generadores/lineal.js"></script>
+    <script src="./Generadores/multiplicativo.js"></script>
+    <script src="./Generadores/default.js"></script>
 
 </body>
 

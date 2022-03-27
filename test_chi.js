@@ -1,4 +1,4 @@
-const buttonTst = document.getElementById('btnTest');
+const buttonTest = document.getElementById('btnTestLineal');
 
 const chi = [
     [4, 9.49],
@@ -15,6 +15,7 @@ const getNumeros = () => {
     filas.forEach(fila => {
         aux.push(fila.Numero);
     });
+
 
     return aux;
 }
@@ -33,7 +34,6 @@ const arrayMax = (arr) => {
 
 const test = () => {
 
-    buttonTest.disabled = true;
 
     const select = document.getElementById("intLineal");
     const intervalos = select.value;
@@ -43,9 +43,12 @@ const test = () => {
     const min = arrayMin(numeros);
     const paso = (max - min) / intervalos;
 
+
     let [suma, filas] = sumatoria(numeros, min, max, intervalos, paso);
 
     let res = prueba(intervalos, suma);
+
+    console.log("test: ", res);
 
     generarTabla(filas);
 }
