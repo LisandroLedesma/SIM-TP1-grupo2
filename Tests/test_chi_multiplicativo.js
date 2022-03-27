@@ -51,6 +51,7 @@ const testM = () => {
     console.log("test: ", res);
 
     generarTablaM(filas);
+    generarHistograma();
 }
 
 const sumatoriaM = (nros, minimo, maximo, int, paso) => {
@@ -158,4 +159,55 @@ const generarTablaM = (filas) => {
 
 
     new agGrid.Grid(eGridDiv, gridOptions);
+}
+
+const generarHistograma = () => {
+    randArr = getNumerosD();
+
+    var x1 = [];
+    var x2 = [];
+    for (var i = 0; i < randArr.length; i ++) {
+        x1[i] = randArr[i];
+    }
+
+    //Frecuencias observadas
+    var trace1 = {
+        x: x1,
+        type: 'histogram',
+        name: 'Frecuencia Observada',
+        marker: {
+            color: "rgba(255, 100, 102, 0.7)", 
+        },
+        opacity: 0.5,
+        xbins: {
+            end: 1, 
+            size: 0.1, 
+            start: 0
+        }
+    };
+
+    //Frecuencias esperadas 
+    //TODO: falta implementarlo
+    var trace2 = {
+        x: x2,
+        type: 'histogram',
+        name: 'Frecuencia Esperadas',
+        marker: {
+            color: "rgba(100, 200, 102, 0.7)",
+        },
+        opacity: 0.75, 
+        xbins: { 
+            end: 1, 
+            size: 0.1, 
+            start: 0
+        }
+    };
+    var layout = { 
+        title: "Método congruencial lineal o mixto", 
+        barmode: "overlay", 
+        xaxis: {title: "Value X"},
+        yaxis: {title: "Count Y"}
+    };
+    var data = [trace1, trace2];
+    Plotly.newPlot('gd-mcm', data, layout);
 }
