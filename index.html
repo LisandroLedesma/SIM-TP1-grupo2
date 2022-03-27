@@ -54,12 +54,18 @@
     <div class="collapse" id="collapseLineal">
         <div class="container-fluid">
             <hr>
+            <label style="display: block;" for="mcl-seed">Semilla:</label>
             <input id="mcl-seed" placeholder="Semilla" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mcl-c">C:</label>
             <input id="mcl-c" placeholder="c" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mcl-a">A:</label>
             <input id="mcl-a" placeholder="a" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mcl-m">M:</label>
             <input id="mcl-m" placeholder="m" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mcl-n">N:</label>
             <input id="mcl-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number" />
 
+            <label style="display: block;" for="intLineal">N:</label>
             <select id="intLineal" class="form-select" aria-label="Default select example">
                 <option selected>Intervalos</option>
                 <option value="5">5</option>
@@ -80,13 +86,33 @@
     <div class="collapse" id="collapseMutiplicativo">
         <div class="container-fluid">
             <hr>
-            <h4>*acá todos los inputs*</h4>
+            <label style="display: block;" for="mm-semilla">Semilla:</label>
+            <input id="mm-semilla" placeholder="Semilla" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mm-c">C:</label>
+            <input id="mm-c" placeholder="c" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mm-a">A:</label>
+            <input id="mm-a" placeholder="a" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mm-m">M:</label>
+            <input id="mm-m" placeholder="m" style="margin: 0.5em;" type="number" />
+            <label style="display: block;" for="mm-n">N:</label>
+            <input id="mm-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number" />
+
+            <label style="display: block;" for="intLineal">N:</label>
+            <select id="intMultiplicativo" class="form-select" aria-label="Default select example">
+                <option selected>Intervalos</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
             <hr>
 
-            <button type="button" class="btn btn-success" id="btnSim" onclick="simular()">Simular</button>
-            <button type="button" class="btn btn-danger" onclick="borrarTabla()">Reiniciar</button>
+            <button type="button" class="btn btn-success" id="btnSimMultiplicativo" onclick="simularMultiplicativo()">Simular</button>
+            <button type="button" class="btn btn-danger" onclick="borrarTablaM()">Reiniciar</button>
+            <button type="button" class="btn btn-info" id="btnTestMultiplicativo" onclick="testM()"> Test </button>
             <hr>
-            <div id="myGrid" class="ag-theme-alpine" style="height: 500px;"></div>
+            <div id="myGridMult" class="ag-theme-alpine" style="height: 500px;"></div>
+            <div id="gridTestMultiplicativo" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
         </div>
     </div>
     <div class="collapse" id="collapseDefault">
@@ -108,7 +134,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
-    <script src="./test_chi.js"></script>
+    <script src="./test_chi_lineal.js"></script>
+    <script src="./test_chi_multiplicativo.js"></script>
 
     <script src="./Generadores/lineal.js"></script>
     <script src="./Generadores/multiplicativo.js"></script>
