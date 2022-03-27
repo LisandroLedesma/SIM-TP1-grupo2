@@ -1,5 +1,4 @@
 const btnSimMCL = document.getElementById('btnSimMCL');
-const btnSimMCLDelete = document.getElementById('btnSimMCL');
 const btnTest = document.getElementById('btnTestLineal');
 
 // Para el test
