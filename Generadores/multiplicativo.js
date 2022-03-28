@@ -1,6 +1,6 @@
 //metodo multiplicativo
-
 const btnTestM = document.getElementById('btnTestMultiplicativo');
+const button = document.getElementById('btnSimMultiplicativo');
 
 // Para el test
 var nroRnd;
@@ -33,14 +33,13 @@ function generar_aleatorio_multiplicativo(a, semilla, m, cant_random) {
     return random
 }
 
-const button = document.getElementById('btnSimMultiplicativo');
 
 
 const borrarTablaM = () => {
 
     const eGridDiv = document.querySelector('#myGridMult');
     const testGridDivM = document.querySelector('#gridTestMultiplicativo');
-
+    const graphicDivM = document.querySelector("#gd-mcm");
 
     button.disabled = false;
     btnTestM.disabled = false;
@@ -56,6 +55,11 @@ const borrarTablaM = () => {
     while (childT) {
         testGridDivM.removeChild(childT);
         childT = testGridDivM.lastElementChild;
+    }
+    let childGraphic = graphicDivM.lastElementChild;
+    while (childGraphic) {
+        graphicDivM.removeChild(childGraphic);
+        childGraphic = graphicDivM.lastElementChild;
     }
 }
 

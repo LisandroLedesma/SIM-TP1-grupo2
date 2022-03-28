@@ -110,11 +110,12 @@ const simularMCL = () => {
 }
 
 
-// Deberíamos crear un "borrarTablaXX" para cada tipo de simulación?? O con uno eliminamos todas las tablas posibles?
+
 const borrarTabla = () => {
 
     const eGridDiv = document.querySelector('#gridLineal');
     const testGridDiv = document.querySelector('#gridTestLineal');
+    const graphicDiv = document.querySelector("#gd-mcl");
 
 
     btnSimMCL.disabled = false;
@@ -131,5 +132,11 @@ const borrarTabla = () => {
     while (childT) {
         testGridDiv.removeChild(childT);
         childT = testGridDiv.lastElementChild;
+    }
+
+    let childGraphic = graphicDiv.lastElementChild;
+    while (childGraphic) {
+        graphicDiv.removeChild(childGraphic);
+        childGraphic = graphicDiv.lastElementChild;
     }
 }

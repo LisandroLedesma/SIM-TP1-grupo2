@@ -65,9 +65,9 @@
             <label style="display: block;" for="mcl-n">N:</label>
             <input id="mcl-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number" />
 
-            <label style="display: block;" for="intD">N:</label>
+            <label style="display: block;" for="intLineal">Intervalos:</label>
             <select id="intLineal" class="form-select" aria-label="Default select example">
-                <option selected>Intervalos</option>
+                <option selected></option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
@@ -78,9 +78,25 @@
             <button type="button" class="btn btn-success" id="btnSimMCL" onclick="simularMCL()">Simular</button>
             <button type="button" class="btn btn-danger" onclick="borrarTabla()" id="btnSimMCLDelete">Reiniciar</button>
             <button type="button" class="btn btn-info" id="btnTestLineal" onclick="test()"> Test </button>
+
             <hr>
-            <div id="gridLineal" class="ag-theme-alpine my-2" style="height: 500px; width: 1250px;"></div>
-            <div id="gridTestLineal" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
+
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gridLineal" class="ag-theme-alpine my-2" style="height: 500px; width: 1250px;"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gridTestLineal" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
+                    <span id="resL"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gd-mcl" class="ag-theme-alpine my-2"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="collapse" id="collapseMutiplicativo">
@@ -97,9 +113,9 @@
             <label style="display: block;" for="mm-n">N:</label>
             <input id="mm-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number" />
 
-            <label style="display: block;" for="intLineal">N:</label>
+            <label style="display: block;" for="intMultiplicativo">Intervalos:</label>
             <select id="intMultiplicativo" class="form-select" aria-label="Default select example">
-                <option selected>Intervalos</option>
+                <option selected></option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
@@ -107,12 +123,31 @@
             </select>
             <hr>
 
+
             <button type="button" class="btn btn-success" id="btnSimMultiplicativo" onclick="simularMultiplicativo()">Simular</button>
             <button type="button" class="btn btn-danger" onclick="borrarTablaM()">Reiniciar</button>
             <button type="button" class="btn btn-info" id="btnTestMultiplicativo" onclick="testM()"> Test </button>
+
             <hr>
-            <div id="myGridMult" class="ag-theme-alpine" style="height: 500px;"></div>
-            <div id="gridTestMultiplicativo" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
+
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="myGridMult" class="ag-theme-alpine" style="height: 500px;"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gridTestMultiplicativo" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
+                    <span id="resM"></span>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gd-mcm" class="ag-theme-alpine my-2"></div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="collapse" id="collapseDefault">
@@ -121,9 +156,9 @@
             <label style="display: block;" for="d-n">N:</label>
             <input id="d-n" placeholder="Cantidad de nros" style="margin: 0.5em;" type="number" />
 
-            <label style="display: block;" for="intLineal">N:</label>
+            <label style="display: block;" for="intD">Intervalos:</label>
             <select id="intD" class="form-select" aria-label="Default select example">
-                <option selected>Intervalos</option>
+                <option selected></option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
@@ -134,8 +169,24 @@
             <button type="button" class="btn btn-danger" onclick="borrarTablaD()">Reiniciar</button>
             <button type="button" class="btn btn-info" id="btnTestD" onclick="testD()"> Test </button>
             <hr>
-            <div id="myGridD" class="ag-theme-alpine" style="height: 500px;"></div>
-            <div id="gridTestD" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
+
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="myGridD" class="ag-theme-alpine" style="height: 500px;"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gridTestD" class="ag-theme-alpine my-2" style="height: 300px; width: 1250px;"></div>
+                    <label id="resD"></label>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div id="gd-def" class="ag-theme-alpine my-2"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -145,6 +196,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-1.5.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.js" charset="utf-8"></script>
 
     <script src="./Tests/test_chi_lineal.js"></script>
     <script src="./Tests/test_chi_multiplicativo.js"></script>

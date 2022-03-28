@@ -44,10 +44,9 @@ const simularD = () => {
     n = parseInt(n);
 
     try {
-        // TODO: Agregar from y to
+
         btnSimD.disabled = false;
         for (let i = 0; i < n; i++) {
-            // Cada row se va a instaciar con objetos que retornan de las simulaciones a mostrar en pantalla, esto es un placeholder para la demo
 
 
             let row = {
@@ -76,13 +75,11 @@ const simularD = () => {
     new agGrid.Grid(eGridDivD, gridOptions);
 }
 
-
-// Deberíamos crear un "borrarTablaXX" para cada tipo de simulación?? O con uno eliminamos todas las tablas posibles?
 const borrarTablaD = () => {
 
     const eGridDivD = document.querySelector('#myGridD');
     const testGridDivD = document.querySelector('#gridTestD');
-
+    const graphicDivD = document.querySelector("#gd-def");
 
     btnSimD.disabled = false;
     btnTestD.disabled = false;
@@ -98,5 +95,11 @@ const borrarTablaD = () => {
     while (childT) {
         testGridDivD.removeChild(childT);
         childT = testGridDivD.lastElementChild;
+    }
+
+    let childGraphic = graphicDivD.lastElementChild;
+    while (childGraphic) {
+        graphicDivD.removeChild(childGraphic);
+        childGraphic = graphicDivD.lastElementChild;
     }
 }
