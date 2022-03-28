@@ -41,7 +41,7 @@ const testM = () => {
     const numeros = getNumerosM();
     const max = arrayMaxM(numeros);
     const min = arrayMinM(numeros);
-    const paso = (max - min) / intervalos;
+    const paso = ((max - min) / intervalos) + 0.1;
 
 
     let [suma, filas] = sumatoriaM(numeros, min, max, intervalos, paso);

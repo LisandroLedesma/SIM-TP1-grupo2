@@ -41,7 +41,7 @@ const testD = () => {
     const numeros = getNumerosD();
     const max = arrayMaxD(numeros);
     const min = arrayMinD(numeros);
-    const paso = (max - min) / intervalos;
+    const paso = ((max - min) / intervalos) + 0.1;
 
     console.log(min);
     console.log(max);
