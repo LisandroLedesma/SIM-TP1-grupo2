@@ -23,9 +23,11 @@ const testD = () => {
     const intervalos = select.value;
 
     const numeros = getNumerosD();
+    numeros.sort();
 
-    const max = Math.max.apply(Math, numeros);
-    const min = Math.min.apply(Math, numeros);
+    const max = numeros[numeros.length - 1];
+    const min = numeros[0];
+
     const paso = Number(((max - min) / intervalos).toFixed(4));
 
     let [suma, filas] = sumatoriaD(numeros, min, max, intervalos, paso);
@@ -53,7 +55,7 @@ const sumatoriaD = (nros, minimo, maximo, int, paso) => {
             lim_sup = Number((Number(lim_sup) + Number(paso)).toFixed(4));
         }
 
-        if (int + 1 == intervalos) {
+        if ((i + 1) === Number(intervalos)) {
             lim_sup = maximo;
         }
 
@@ -77,8 +79,7 @@ const sumatoriaD = (nros, minimo, maximo, int, paso) => {
 
 const frecObsD = (nros, inf, sup) => {
     fo = 0;
-
-    ord = nros.sort();
+    ord = nros;
 
     for (let i = 0; i < ord.length; i++) {
         if (i + 1 !== ord.length) {
@@ -208,13 +209,16 @@ const generarHistogramaD = (filas, paso) => {
             size: paso,
         },
     };
+
     let layout = {
         title: "Distribución de frecuencia (método default)",
         barmode: "overlay",
         xaxis: { title: "Intervalos" },
         yaxis: { title: "Frecuencia" },
     };
+
     let data = [trace1, trace2];
+
     let config = {
         responsive: true,
     };

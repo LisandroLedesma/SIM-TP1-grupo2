@@ -67,6 +67,7 @@ const simularD = () => {
 const borrarTablaD = () => {
     const eGridDivD = document.querySelector("#myGridD");
     const testGridDivD = document.querySelector("#gridTestD");
+    const graphicDivD = document.querySelector("#gd-def");
 
     btnSimD.disabled = false;
     btnTestD.disabled = false;
@@ -81,5 +82,11 @@ const borrarTablaD = () => {
     while (childT) {
         testGridDivD.removeChild(childT);
         childT = testGridDivD.lastElementChild;
+    }
+
+    let childGraphic = graphicDivD.lastElementChild;
+    while (childGraphic) {
+        graphicDivD.removeChild(childGraphic);
+        childGraphic = graphicDivD.lastElementChild;
     }
 };

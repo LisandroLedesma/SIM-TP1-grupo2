@@ -23,9 +23,10 @@ const testL = () => {
     const intervalos = select.value;
 
     const numeros = getNumerosL();
+    numeros.sort();
 
-    const max = Math.max.apply(Math, numeros);
-    const min = Math.min.apply(Math, numeros);
+    const max = numeros[numeros.length - 1];
+    const min = numeros[0];
     const paso = Number(((max - min) / intervalos).toFixed(4));
 
     let [suma, filas] = sumatoriaL(numeros, min, max, intervalos, paso);
@@ -53,7 +54,7 @@ const sumatoriaL = (nros, minimo, maximo, int, paso) => {
             lim_sup = Number((Number(lim_sup) + Number(paso)).toFixed(4));
         }
 
-        if (int + 1 == intervalos) {
+        if ((i + 1) === Number(intervalos)) {
             lim_sup = maximo;
         }
 
@@ -78,7 +79,7 @@ const sumatoriaL = (nros, minimo, maximo, int, paso) => {
 const frecObsL = (nros, inf, sup) => {
     fo = 0;
 
-    ord = nros.sort();
+    ord = nros;
 
     for (let i = 0; i < ord.length; i++) {
         if (i + 1 !== ord.length) {
