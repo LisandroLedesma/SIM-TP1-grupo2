@@ -28,11 +28,17 @@ const testD = () => {
     const max = numeros[numeros.length - 1];
     const min = numeros[0];
 
-    const paso = Number(((max - min) / intervalos).toFixed(4));
+    const paso = ((max - min) / intervalos + 0.0001).toFixed(4);
 
     let [suma, filas] = sumatoriaD(numeros, min, max, intervalos, paso);
 
-    pruebaD(intervalos, suma);
+    let valor = pruebaD(intervalos, suma);
+
+    // Si el valor el true es que no se rechaza la hipotesis
+    // Si el valor es false es que se rechaza la hipotesis
+    // TODO: mostrar en un label el resultado de la prueba
+    // if (valor) {
+    // }
 
     generarTablaD(filas);
     generarHistogramaD(filas, paso);
@@ -56,7 +62,7 @@ const sumatoriaD = (nros, minimo, maximo, int, paso) => {
         }
 
         if ((i + 1) === Number(intervalos)) {
-            lim_sup = maximo;
+            lim_sup = maximo + 0.0001;
         }
 
         let fila = new Object();
@@ -81,17 +87,11 @@ const frecObsD = (nros, inf, sup) => {
     fo = 0;
     ord = nros;
 
-    for (let i = 0; i < ord.length; i++) {
-        if (i + 1 !== ord.length) {
-            if (ord[i] >= inf && ord[i] < sup) {
-                fo += 1;
-            }
-        } else {
-            if (ord[i] >= inf && ord[i] <= sup) {
-                fo += 1;
-            }
+    ord.forEach((numero) => {
+        if (numero >= inf && numero < sup) {
+            fo += 1;
         }
-    }
+    });
 
     return fo;
 };
