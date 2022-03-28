@@ -1,50 +1,88 @@
-//metodo multiplicativo
-
-const btnTestM = document.getElementById('btnTestMultiplicativo');
+const btnSimM = document.getElementById("btnSimM");
+const btnTestM = document.getElementById("btnTestM");
 
 // Para el test
 var nroRnd;
 
-function generar_semillas(a, semilla, m) {
-    let prox_semilla = (a * semilla) % m;
-    return prox_semilla
-}
+const metCongruencialMultiplicativo = (seed, a, m, n) => {
+    let randArr = [];
 
-function generar_aleatorio_multiplicativo(a, semilla, m, cant_random) {
-    let random = [];
-    for (let i = 0; i < cant_random; i++) {
-        semilla = generar_semillas(a, semilla, m);
-        let rnd = semilla / m;
-        let rnd_redondeado = rnd.toFixed(4);
-
-        const valor_random = new ValorRandom(i + 1, semilla, rnd_redondeado);
-        prox_semilla = semilla;
+    for (let i = 0; i < n; i++) {
+        seed = (a * seed) % m;
+        let rnd = seed / m;
 
         let row = {
-            "n": valor_random.n,
-            "Semilla": valor_random.semilla,
-            "Numero": valor_random.nro_random,
-        }
+            n: i + 1,
+            Semilla: seed,
+            Numero: Number(rnd.toFixed(4)),
+        };
 
-        random.push(row);
-
+        randArr.push(row);
     }
 
-    return random
-}
+    return randArr;
+};
 
-const button = document.getElementById('btnSimMultiplicativo');
+const simularM = () => {
+    const eGridDiv = document.querySelector("#myGridM");
 
-
-const borrarTablaM = () => {
-
-    const eGridDiv = document.querySelector('#myGridMult');
-    const testGridDivM = document.querySelector('#gridTestMultiplicativo');
-
-
-    button.disabled = false;
+    btnSimM.disabled = true;
     btnTestM.disabled = false;
 
+    borrarTablaM();
+
+    let a = document.getElementById("mm-a").value;
+    let m = document.getElementById("mm-m").value;
+    let n = document.getElementById("mm-n").value;
+    let seed = document.getElementById("mm-semilla").value;
+
+    //Definir columnas
+    let columnDefs = [
+        { field: "n" },
+        { field: "Semilla" },
+        { field: "Numero" },
+    ];
+
+    // Validar inputs
+    if (a === "" || m === "" || n === "" || seed === "") {
+        alert("Por favor, llene todos los campos");
+        btnSimM.disabled = false;
+    }
+
+    if (a < 0 || m < 0 || n < 0 || seed < 0) {
+        alert("Los valores deben ser positivos");
+        btnSimM.disabled = false;
+    }
+
+    if (isNaN(a) || isNaN(m) || isNaN(n) || isNaN(seed)) {
+        alert("Todos los valores deben ser numeros");
+        btnSimL.disabled = false;
+        throw "Los valores deben ser numeros";
+    }
+
+    a = parseInt(a);
+    m = parseInt(m);
+    n = parseInt(n);
+    seed = parseInt(seed);
+
+    let rowData = metCongruencialMultiplicativo(seed, a, m, n);
+    nroRnd = rowData;
+
+    // Matchea colunas y filas
+    let gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData,
+    };
+
+    new agGrid.Grid(eGridDiv, gridOptions);
+};
+
+const borrarTablaM = () => {
+    const eGridDiv = document.querySelector("#myGridM");
+    const testGridDivM = document.querySelector("#gridTestM");
+
+    btnSimM.disabled = false;
+    btnTestM.disabled = false;
 
     let child = eGridDiv.lastElementChild;
     while (child) {
@@ -57,64 +95,4 @@ const borrarTablaM = () => {
         testGridDivM.removeChild(childT);
         childT = testGridDivM.lastElementChild;
     }
-}
-
-const simularMultiplicativo = () => {
-
-    const eGridDiv = document.querySelector('#myGridMult');
-
-    button.disabled = true;
-
-
-    // Definir columnas
-    let columnDefs = [
-        { field: "n" },
-        { field: "Semilla" },
-        { field: "Numero" },
-    ];
-
-
-    // Validar inputs
-    let a = document.getElementById('mm-a').value;
-    let m = document.getElementById('mm-m').value;
-    let n = document.getElementById('mm-n').value;
-    let semilla = document.getElementById('mm-semilla').value;
-
-    //validacion para campos vacios
-    if (a === '' || m === '' || n === '' || semilla === '') {
-        alert('Por favor, llene todos los campos');
-        button.disabled = false;
-    }
-
-    //validacion para campos negativos
-    if (a < 0 || m < 0 || n < 0 || semilla < 0) {
-        alert('Los valores deben ser positivos');
-        button.disabled = false;
-    }
-
-    //validacion para semilla impar y primo
-    //if (semilla % 2 == 0){
-    //    alert('La semilla debe ser un numero impar y primo')
-    //}
-
-    // Definir filas
-    let rowData = generar_aleatorio_multiplicativo(a, semilla, m, n);
-    nroRnd = rowData;
-
-    // Matchea colunas y filas
-    let gridOptions = {
-        columnDefs: columnDefs,
-        rowData: rowData
-    };
-
-
-    new agGrid.Grid(eGridDiv, gridOptions);
-}
-
-class ValorRandom {
-    constructor(n, semilla, nro_random) {
-        this.n = n
-        this.semilla = semilla
-        this.nro_random = nro_random
-    }
-}
+};

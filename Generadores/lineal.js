@@ -1,60 +1,43 @@
-const btnSimMCL = document.getElementById('btnSimMCL');
-const btnTest = document.getElementById('btnTestLineal');
+const btnSimL = document.getElementById("btnSimL");
+const btnTestL = document.getElementById("btnTestL");
 
 // Para el test
 var nroRnd;
 
-
-const metCongruencialMixto = (seed, c, a, m, n, from, to) => {
-
-    let xi = seed;
+const metCongruencialLineal = (seed, c, a, m, n) => {
     let randArr = [];
-    let row = {};
-    let rnd = 0;
-
-    if (from > n || to > n) throw "n must be greater";
 
     for (let i = 0; i < n; i++) {
-        xi = (a * xi + c) % m;
-        rnd = xi / m;
+        seed = (a * seed + c) % m;
+        let rnd = seed / m;
 
-        row.Semilla = xi;
-        row['Numero'] = Number(rnd.toFixed(4));
-        row.n = i + 1;
+        let row = {
+            n: i + 1,
+            Semilla: seed,
+            Numero: Number(rnd.toFixed(4)),
+        };
+
         randArr.push(row);
-        row = {};
-    }
-
-    if (typeof from !== 'undefined') {
-        if (from > to) throw "Error"
-        else {
-            let newArr = randArr.splice(from - 1, to);
-            return newArr;
-        }
     }
 
     return randArr;
-}
+};
 
-const simularMCL = () => {
+const simularL = () => {
+    const eGridDiv = document.querySelector("#myGridL");
 
-    let rowData = [];
-    btnSimMCL.disabled = true;
-    btnTest.disabled = false;
+    btnSimL.disabled = true;
+    btnTestL.disabled = false;
 
-    borrarTabla();
+    borrarTablaL();
 
-    // TODO: Cambiar el ID del grid
-    const eGridDiv = document.querySelector('#gridLineal');
-    let a = document.getElementById('mcl-a').value;
-    let c = document.getElementById('mcl-c').value;
-    let m = document.getElementById('mcl-m').value;
-    let n = document.getElementById('mcl-n').value;
-    let seed = document.getElementById('mcl-seed').value;
-    // const from = document.getElementById('mcl-from').value;
-    // const to = document.getElementById('mcl-to').value;
+    let a = document.getElementById("mcl-a").value;
+    let c = document.getElementById("mcl-c").value;
+    let m = document.getElementById("mcl-m").value;
+    let n = document.getElementById("mcl-n").value;
+    let seed = document.getElementById("mcl-seed").value;
 
-    // Definir columnas
+    //Definir columnas
     let columnDefs = [
         { field: "n" },
         { field: "Semilla" },
@@ -62,21 +45,21 @@ const simularMCL = () => {
     ];
 
     // Validar inputs
-    // TODO: Mejorar esto ya que no aplica el patron DRY
-    if (a === '' || c === '' || m === '' || n === '' || seed === '') {
-        alert('Por favor, llene todos los campos');
-        btnSimMCL.disabled = false;
+    if (a === "" || c === "" || m === "" || n === "" || seed === "") {
+        alert("Por favor, llene todos los campos");
+        btnSimL.disabled = false;
         throw "Se deben llenar todos los campos";
     }
+
     if (a < 0 || c < 0 || m < 0 || n < 0 || seed < 0) {
-        alert('Los valores deben ser positivos');
-        btnSimMCL.disabled = false;
+        alert("Los valores deben ser positivos");
+        btnSimL.disabled = false;
         throw "Los valores deben ser positivos";
     }
-    // validar si los inputs no son numeros
+
     if (isNaN(a) || isNaN(c) || isNaN(m) || isNaN(n) || isNaN(seed)) {
-        alert('Todos los valores deben ser numeros');
-        btnSimMCL.disabled = false;
+        alert("Todos los valores deben ser numeros");
+        btnSimL.disabled = false;
         throw "Los valores deben ser numeros";
     }
 
@@ -86,40 +69,24 @@ const simularMCL = () => {
     n = parseInt(n);
     seed = parseInt(seed);
 
-    try {
-        // TODO: Agregar from y to
-        btnSimMCL.disabled = false;
-        rowData = metCongruencialMixto(seed, c, a, m, n);
-        nroRnd = rowData;
-
-    } catch (e) {
-        alert(e);
-        throw "Error";
-    }
-
-    // let rowData = lineal();
+    let rowData = metCongruencialLineal(seed, c, a, m, n);
+    nroRnd = rowData;
 
     // Matchea colunas y filas
     let gridOptions = {
         columnDefs: columnDefs,
-        rowData: rowData
+        rowData: rowData,
     };
 
-
     new agGrid.Grid(eGridDiv, gridOptions);
-}
+};
 
+const borrarTablaL = () => {
+    const eGridDiv = document.querySelector("#myGridL");
+    const testGridDiv = document.querySelector("#gridTestL");
 
-// Deberíamos crear un "borrarTablaXX" para cada tipo de simulación?? O con uno eliminamos todas las tablas posibles?
-const borrarTabla = () => {
-
-    const eGridDiv = document.querySelector('#gridLineal');
-    const testGridDiv = document.querySelector('#gridTestLineal');
-
-
-    btnSimMCL.disabled = false;
-    btnTest.disabled = false;
-
+    btnSimL.disabled = false;
+    btnTestL.disabled = false;
 
     let child = eGridDiv.lastElementChild;
     while (child) {
@@ -132,4 +99,4 @@ const borrarTabla = () => {
         testGridDiv.removeChild(childT);
         childT = testGridDiv.lastElementChild;
     }
-}
+};
