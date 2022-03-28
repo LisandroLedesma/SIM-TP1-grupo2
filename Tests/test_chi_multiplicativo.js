@@ -27,20 +27,23 @@ const testM = () => {
     const intervalos = select.value;
 
     const spanM = document.getElementById('resM');
+    const spanMD = document.getElementById('dataM');
 
     const numeros = getNumerosM();
     numeros.sort();
 
     const max = numeros[numeros.length - 1];
     const min = numeros[0];
-    const paso = Number(((max - min) / intervalos).toFixed(4));
+    const paso = Number(((max - min) / intervalos));
 
     let [suma, filas] = sumatoriaM(numeros, min, max, intervalos, paso);
 
+    let [res, sum, tabla] = pruebaM(intervalos, suma);
 
-    let res = pruebaM(intervalos, suma);
+    sum = Number(sum).toFixed(2);
 
-    console.log("test: ", res);
+    spanMD.innerHTML = `<span>Estadistico: ${sum}. Valor de tabla: ${tabla}</span>`;
+
     if (res) {
         spanM.innerHTML = `<span style="color: green">No se rechaza la hipotesis</span>`;
     } else {
@@ -118,7 +121,7 @@ const pruebaM = (int, suma) => {
         res = true;
     }
 
-    return res;
+    return [res, suma, valor_tabla];
 }
 
 const generarTablaM = (filas) => {

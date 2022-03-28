@@ -25,6 +25,7 @@ const testD = () => {
     const intervalos = select.value;
 
     const spanD = document.getElementById('resD');
+    const spanDD = document.getElementById('dataD');
 
     const numeros = getNumerosD();
     numeros.sort();
@@ -32,11 +33,16 @@ const testD = () => {
     const max = numeros[numeros.length - 1];
     const min = numeros[0];
 
-    const paso = ((max - min) / intervalos + 0.0001).toFixed(4);
+    const paso = ((max - min) / intervalos + 0.0001);
 
     let [suma, filas] = sumatoriaD(numeros, min, max, intervalos, paso);
 
-    let res = pruebaD(intervalos, suma);
+    let [res, sum, tabla] = pruebaD(intervalos, suma);
+
+    sum = Number(sum).toFixed(2);
+
+    spanDD.innerHTML = `<span>Estadistico: ${sum}. Valor de tabla: ${tabla}</span>`;
+
     if (res) {
         spanD.innerHTML = `<span style="color: green">No se rechaza la hipotesis</span>`;
     } else {
@@ -114,7 +120,7 @@ const pruebaD = (int, suma) => {
         res = true;
     }
 
-    return res;
+    return [res, suma, valor_tabla];
 };
 
 const generarTablaD = (filas) => {
@@ -171,7 +177,7 @@ const generarHistogramaD = (filas, paso) => {
 
     //Carga frecuencias observadas
     for (var i = 0; i < randArr.length; i++) {
-        x1[i] = randArr[i];
+        x1[i] = Number(randArr[i]);
     }
 
     //Carga frecuencias esperadas (es un hardcode dinamico)
@@ -180,6 +186,7 @@ const generarHistogramaD = (filas, paso) => {
         let aux = cargarValoresD(filas, limites_inf[i]);
         aux.map((x) => x2.push(x));
     }
+
 
     //Frecuencias observadas
     let trace1 = {

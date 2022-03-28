@@ -26,20 +26,25 @@ const test = () => {
     const select = document.getElementById("intLineal");
     const intervalos = select.value;
     const spanL = document.getElementById('resL');
+    const spanLD = document.getElementById('dataL');
 
     const numeros = getNumeros();
     numeros.sort();
 
     const max = numeros[numeros.length - 1];
     const min = numeros[0];
-    const paso = Number(((max - min) / intervalos).toFixed(4));
+    const paso = Number(((max - min) / intervalos));
 
     let [suma, filas] = sumatoria(numeros, min, max, intervalos, paso);
 
 
-    let res = prueba(intervalos, suma);
+    let [res, sum, tabla] = prueba(intervalos, suma);
 
-    console.log("test: ", res);
+    sum = Number(sum).toFixed(2);
+
+    spanLD.innerHTML = `<span>Estadistico: ${sum}. Valor de tabla: ${tabla}</span>`;
+
+
     if (res) {
         spanL.innerHTML = `<span style="color: green">No se rechaza la hipotesis</span>`;
     } else {
@@ -117,7 +122,7 @@ const prueba = (int, suma) => {
         res = true;
     }
 
-    return res;
+    return [res, suma, valor_tabla];
 }
 
 const generarTabla = (filas) => {
