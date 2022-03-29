@@ -33,7 +33,7 @@ const testD = () => {
     const max = numeros[numeros.length - 1];
     const min = numeros[0];
 
-    const paso = ((max - min) / intervalos + 0.0001);
+    const paso = Number((max - min) / intervalos + 0.0001);
 
     let [suma, filas] = sumatoriaD(numeros, min, max, intervalos, paso);
 
@@ -70,9 +70,9 @@ const sumatoriaD = (nros, minimo, maximo, int, paso) => {
             lim_sup = Number((Number(lim_sup) + Number(paso)).toFixed(4));
         }
 
-        if ((i + 1) === Number(int)) {
-            lim_sup = Number(maximo) + 0.0001;
-        }
+        // if ((i + 1) === Number(int)) {
+        //     lim_sup = Number(maximo) + 0.0001;
+        // }
 
         let fila = new Object();
 
@@ -158,10 +158,10 @@ const generarTablaD = (filas) => {
 };
 
 //Carga frecuencias esperadas (es un hardcode dinamico)
-const cargarValoresD = (filas, lim_inf) => {
+const cargarValoresD = (filas, marca_clase) => {
     let aux = [];
     for (var i = 0; i < filas[0].fe; i++) {
-        aux.push(lim_inf);
+        aux.push(marca_clase);
     }
     return aux;
 };
@@ -181,9 +181,9 @@ const generarHistogramaD = (filas, paso) => {
     }
 
     //Carga frecuencias esperadas (es un hardcode dinamico)
-    let limites_inf = filas.map((x) => x.lim_inf);
+    let marcas_clase = filas.map((x) => x.marca_clase);
     for (var i = 0; i < filas.length; i++) {
-        let aux = cargarValoresD(filas, limites_inf[i]);
+        let aux = cargarValoresD(filas, marcas_clase[i]);
         aux.map((x) => x2.push(x));
     }
 
